@@ -121,6 +121,34 @@ export const isClashVerge = (
   }
 }
 
+export const isClashMetaForAndroid = (
+  ua: string | undefined,
+  version?: string,
+): boolean => {
+  if (!ua) {
+    return false
+  }
+
+  const matcher = /\bClashMetaForAndroid\/(.+)\b/i
+  const isClient = matcher.exec(ua)
+
+  if (!isClient) {
+    return false
+  }
+
+  if (!version) {
+    return true
+  }
+
+  const clientVersion = isClient ? isClient[1].replace(/\.Meta.*/gi, '') : ''
+
+  try {
+    return satisfies(clientVersion, version)
+  } catch {
+    return false
+  }
+}
+
 export const isStash = (ua: string | undefined, version?: string): boolean => {
   if (!ua) {
     return false
