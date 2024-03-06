@@ -59,6 +59,23 @@ export const CLASH_META_SUPPORTED_RULE = [
   'MATCH',
 ] as const
 
+// https://stash.wiki/rules/rule-types
+export const STASH_SUPPORTED_RULE = [
+  'DOMAIN',
+  'DOMAIN-SUFFIX',
+  'DOMAIN-KEYWORD',
+  'GEOIP',
+  'IP-ASN',
+  'IP-CIDR',
+  'IP-CIDR6',
+  'DST-PORT',
+  'RULE-SET',
+  'GEOSITE',
+  'PROCESS-NAME',
+  'PROCESS-PATH',
+  'SCRIPT',
+] as const
+
 export const QUANTUMULT_X_SUPPORTED_RULE = [
   'USER-AGENT',
   'HOST',
@@ -118,3 +135,39 @@ export const CACHE_KEYS = {
   Provider: 'provider-v2',
   RenderedArtifact: 'rendered-artifact',
 } as const
+
+export const V2RAYN_SUPPORTED_VMESS_NETWORK = [
+  'tcp',
+  'http',
+  'ws',
+  'h2',
+  'grpc',
+] as const
+
+export const CLASH_META_SUPPORTED_VMESS_NETWORK = [
+  'tcp',
+  'ws',
+  'h2',
+  'grpc',
+  'http',
+] as const
+
+export const STASH_SUPPORTED_VMESS_NETWORK = [
+  'tcp',
+  'ws',
+  'h2',
+  'grpc',
+  'http',
+] as const
+
+export const QUANTUMULT_X_SUPPORTED_VMESS_NETWORK = [
+  'tcp',
+  'ws',
+  'http',
+] as const
+
+export const SURGE_SUPPORTED_VMESS_NETWORK = ['tcp', 'ws'] as const
+
+export const SURFBOARD_SUPPORTED_VMESS_NETWORK = ['tcp', 'ws'] as const
+
+export const LOON_SUPPORTED_VMESS_NETWORK = ['tcp', 'ws', 'http'] as const

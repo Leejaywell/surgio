@@ -64,13 +64,12 @@ test('getSurgeNodes', async (t) => {
       method: 'auto',
       network: 'ws',
       nodeName: '测试 3',
-      path: '/',
       port: 8080,
       tls: false,
-      host: '',
       uuid: '1386f85e-657b-4d6e-9d56-78badb75e1fd',
-      binPath: '/usr/local/bin/v2ray',
-      localPort: 61101,
+      wsOpts: {
+        path: '/',
+      },
     },
     {
       type: NodeTypeEnum.Vmess,
@@ -79,13 +78,12 @@ test('getSurgeNodes', async (t) => {
       method: 'auto',
       network: 'ws',
       nodeName: '测试 4',
-      path: '/',
       port: 8080,
       tls: true,
-      host: '',
       uuid: '1386f85e-657b-4d6e-9d56-78badb75e1fd',
-      binPath: '/usr/local/bin/v2ray',
-      localPort: 61101,
+      wsOpts: {
+        path: '/',
+      },
     },
     {
       type: NodeTypeEnum.Vmess,
@@ -94,13 +92,9 @@ test('getSurgeNodes', async (t) => {
       method: 'aes-128-gcm',
       network: 'tcp',
       nodeName: '测试 5',
-      path: '/',
       port: 8080,
       tls: false,
-      host: '',
       uuid: '1386f85e-657b-4d6e-9d56-78badb75e1fd',
-      binPath: '/usr/local/bin/v2ray',
-      localPort: 61101,
     },
     {
       nodeName: 'Test Node 4',
@@ -148,17 +142,16 @@ test('getSurgeNodes', async (t) => {
       method: 'auto',
       network: 'ws',
       nodeName: '测试 6',
-      path: '/',
       port: 8080,
       tls: true,
       tls13: true,
       skipCertVerify: true,
-      host: '',
       uuid: '1386f85e-657b-4d6e-9d56-78badb75e1fd',
-      binPath: '/usr/local/bin/v2ray',
-      localPort: 61101,
       tfo: true,
       mptcp: true,
+      wsOpts: {
+        path: '/',
+      },
     },
     {
       type: NodeTypeEnum.Vmess,
@@ -167,18 +160,17 @@ test('getSurgeNodes', async (t) => {
       method: 'auto',
       network: 'ws',
       nodeName: '测试 7',
-      path: '/',
       port: 8080,
       tls: true,
       tls13: true,
       skipCertVerify: true,
-      host: '',
       uuid: '1386f85e-657b-4d6e-9d56-78badb75e1fd',
-      binPath: '/usr/local/bin/v2ray',
-      localPort: 61101,
       tfo: true,
       mptcp: true,
       underlyingProxy: 'another-proxy',
+      wsOpts: {
+        path: '/',
+      },
     },
   ]
   const txt1 = surge.getSurgeNodes(nodeList).split('\n')
@@ -201,11 +193,11 @@ test('getSurgeNodes', async (t) => {
   )
   t.is(
     txt1[3],
-    '测试 3 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="host:1.1.1.1|user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", vmess-aead=false',
+    '测试 3 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", vmess-aead=false',
   )
   t.is(
     txt1[4],
-    '测试 4 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="host:1.1.1.1|user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false',
+    '测试 4 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false',
   )
   t.is(
     txt1[5],
@@ -229,11 +221,11 @@ test('getSurgeNodes', async (t) => {
   )
   t.is(
     txt1[10],
-    '测试 6 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="host:1.1.1.1|user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, tls13=true, skip-cert-verify=true',
+    '测试 6 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, tls13=true, skip-cert-verify=true',
   )
   t.is(
     txt1[11],
-    '测试 7 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="host:1.1.1.1|user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, underlying-proxy=another-proxy, tls13=true, skip-cert-verify=true',
+    '测试 7 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, underlying-proxy=another-proxy, tls13=true, skip-cert-verify=true',
   )
 
   t.is(
@@ -448,7 +440,7 @@ test('getSurgeNodes', async (t) => {
         testUrl: 'http://www.google.com',
       },
     ]),
-    '测试 6 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="host:1.1.1.1|user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, test-url=http://www.google.com, tls13=true, skip-cert-verify=true',
+    '测试 6 = vmess, 1.1.1.1, 8080, username=1386f85e-657b-4d6e-9d56-78badb75e1fd, ws=true, ws-path=/, ws-headers="user-agent:Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1", tls=true, vmess-aead=false, tfo=true, mptcp=true, test-url=http://www.google.com, tls13=true, skip-cert-verify=true',
   )
 
   t.is(

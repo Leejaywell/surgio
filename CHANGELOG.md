@@ -1,3 +1,28 @@
+## [3.5.1](https://github.com/geekdada/surgio/compare/v3.5.0...v3.5.1) (2024-03-05)
+
+
+### Bug Fixes
+
+* discard more than one HTTP headers from Vmess+HTTP when reading or outputting a Clash subscription ([ebed482](https://github.com/geekdada/surgio/commit/ebed482e38835e130e6f9c0fc7a4474b634811d7))
+
+
+
+# [3.5.0](https://github.com/geekdada/surgio/compare/v3.4.3...v3.5.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* console ([a5f59e9](https://github.com/geekdada/surgio/commit/a5f59e99631db853dbd87e0f4ee18b269664696f))
+
+
+### Features
+
+* add CLASH_META_SUPPORTED_RULE ([4e6f600](https://github.com/geekdada/surgio/commit/4e6f600ab947b769ac9760537eedbe004a3c026b))
+* add new filters `clashMeta` and `stash` ([654ceba](https://github.com/geekdada/surgio/commit/654ceba8818a83e203eaddf5d9b56914462cb62f))
+* add support for more VMESS transport protocol ([08b88b9](https://github.com/geekdada/surgio/commit/08b88b900f78de91b08f31f891f8fed52997d209))
+
+
+
 ## [3.4.3](https://github.com/geekdada/surgio/compare/v3.4.2...v3.4.3) (2024-02-17)
 
 
