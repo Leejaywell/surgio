@@ -134,17 +134,71 @@ function nodeListMapper(nodeConfig: PossibleNodeConfigType) {
           : null),
       } as const
 
+    case NodeTypeEnum.Vless:
     case NodeTypeEnum.Vmess: {
+      if (nodeConfig.type === 'vless' && !clashConfig.enableVless) {
+        logger.warn(
+          `尚未开启 Clash 的 VLESS 支持，节点 ${nodeConfig.nodeName} 会被省略。如需开启，请在配置文件中设置 clashConfig.enableVless 为 true。`,
+        )
+        return null
+      }
+
       const vmessNode: Record<string, any> = {
-        type: 'vmess',
+        type: nodeConfig.type,
         cipher: nodeConfig.method,
         name: nodeConfig.nodeName,
         server: nodeConfig.hostname,
         port: nodeConfig.port,
         udp: nodeConfig.udpRelay === true,
         uuid: nodeConfig.uuid,
-        alterId: nodeConfig.alterId || '0',
         network: nodeConfig.network || 'tcp',
+      }
+
+      if (nodeConfig.type === NodeTypeEnum.Vmess) {
+        vmessNode.alterId = nodeConfig.alterId || '0'
+      }
+
+      if (nodeConfig.type === NodeTypeEnum.Vless) {
+        vmessNode.flow = nodeConfig.flow
+
+        if (nodeConfig.realityOpts) {
+          vmessNode['reality-opts'] = {
+            'public-key': nodeConfig.realityOpts.publicKey,
+          }
+
+          if (nodeConfig.realityOpts.shortId) {
+            vmessNode['reality-opts']['short-id'] =
+              nodeConfig.realityOpts.shortId
+          }
+          if (nodeConfig.realityOpts.spiderX) {
+            vmessNode['reality-opts']['spider-x'] =
+              nodeConfig.realityOpts.spiderX
+          }
+        }
+      }
+
+      if (
+        (nodeConfig.type === NodeTypeEnum.Vmess && nodeConfig.tls) ||
+        nodeConfig.type === NodeTypeEnum.Vless
+      ) {
+        vmessNode.tls = true
+
+        if (nodeConfig.skipCertVerify) {
+          vmessNode['skip-cert-verify'] = nodeConfig.skipCertVerify
+        }
+        if (clashConfig.clashCore === 'clash' && nodeConfig.sni) {
+          vmessNode.servername = nodeConfig.sni
+        }
+        if (clashConfig.clashCore === 'stash' && nodeConfig.sni) {
+          vmessNode.sni = nodeConfig.sni
+          vmessNode.servername = nodeConfig.sni
+        }
+        if (clashConfig.clashCore === 'clash.meta' && nodeConfig.sni) {
+          vmessNode.servername = nodeConfig.sni
+        }
+        if (nodeConfig.clientFingerprint) {
+          vmessNode['client-fingerprint'] = nodeConfig.clientFingerprint
+        }
       }
 
       switch (nodeConfig.network) {
@@ -175,24 +229,6 @@ function nodeListMapper(nodeConfig: PossibleNodeConfigType) {
             }
           }
           break
-      }
-
-      if (nodeConfig.tls) {
-        vmessNode.tls = true
-
-        if (nodeConfig.skipCertVerify) {
-          vmessNode['skip-cert-verify'] = nodeConfig.skipCertVerify
-        }
-        if (clashConfig.clashCore === 'clash' && nodeConfig.sni) {
-          vmessNode.servername = nodeConfig.sni
-        }
-        if (clashConfig.clashCore === 'stash' && nodeConfig.sni) {
-          vmessNode.sni = nodeConfig.sni
-          vmessNode.servername = nodeConfig.sni
-        }
-        if (clashConfig.clashCore === 'clash.meta' && nodeConfig.sni) {
-          vmessNode.servername = nodeConfig.sni
-        }
       }
 
       return vmessNode

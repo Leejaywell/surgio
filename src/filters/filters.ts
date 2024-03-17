@@ -51,6 +51,9 @@ export const chinaBackFilter: NodeFilterType = (item) => {
     '中国上海',
     '中国北京',
     '中国徐州',
+    '中国广州',
+    '中国东莞',
+    '中国中山',
     '中国深圳',
     '中国枣庄',
     '中国郑州',
@@ -104,3 +107,9 @@ export const socks5Filter: NodeFilterType = (item) =>
 // istanbul ignore next
 export const wireguardFilter: NodeFilterType = (item) =>
   item.type === NodeTypeEnum.Wireguard
+// istanbul ignore next
+export const hysteria2Filter: NodeFilterType = (item) =>
+  item.type === NodeTypeEnum.Hysteria2
+// istanbul ignore next
+export const vlessFilter: NodeFilterType = (item) =>
+  item.type === NodeTypeEnum.Vless

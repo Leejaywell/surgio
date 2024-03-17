@@ -1,3 +1,37 @@
+## [3.6.2](https://github.com/geekdada/surgio/compare/v3.6.1...v3.6.2) (2024-03-16)
+
+
+### Bug Fixes
+
+* vless + reality config lacks of client fingerprint ([7c66c01](https://github.com/geekdada/surgio/commit/7c66c01934c050db6097680226b7eb351cfe0cf0))
+
+
+
+## [3.6.1](https://github.com/geekdada/surgio/compare/v3.6.0...v3.6.1) (2024-03-16)
+
+
+### Bug Fixes
+
+* Expand condition check to include Vless nodes in ClashProvider ([e2f54fc](https://github.com/geekdada/surgio/commit/e2f54fc33307386fc2dd48209a92c74a06754490))
+
+
+
+# [3.6.0](https://github.com/geekdada/surgio/compare/v3.5.1...v3.6.0) (2024-03-16)
+
+
+### Bug Fixes
+
+* vmess cipher ([1618630](https://github.com/geekdada/surgio/commit/161863080b4cd5ce51a689ae458da6e6ad6bb59e))
+
+
+### Features
+
+* add clashConfig.enableVless ([050c0a3](https://github.com/geekdada/surgio/commit/050c0a33fc9794a8cc68823e02a1ec759b086415))
+* add support for vless protocol ([960c851](https://github.com/geekdada/surgio/commit/960c851c49ce01bba54265d3a7239090e964691e))
+* input and output vless configuration ([f09a66e](https://github.com/geekdada/surgio/commit/f09a66efe1c742dd89c95822e9f93cce7b2caa56))
+
+
+
 ## [3.5.1](https://github.com/geekdada/surgio/compare/v3.5.0...v3.5.1) (2024-03-05)
 
 

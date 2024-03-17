@@ -7,20 +7,17 @@ import {
   AlterIdValiator,
 } from './common'
 
-export const VmessNetworkValidator = z
-  .union([
-    z.literal('tcp'),
-    z.literal('ws'),
-    z.literal('h2'),
-    z.literal('http'),
-    z.literal('grpc'),
-  ])
-  .default('tcp')
+export const VmessNetworkValidator = z.union([
+  z.literal('tcp'),
+  z.literal('ws'),
+  z.literal('h2'),
+  z.literal('http'),
+  z.literal('grpc'),
+])
 
 export const VmessMethodValidator = z.union([
   z.literal('none'),
   z.literal('aes-128-gcm'),
-  z.literal('chacha20-ietf-poly1305'),
   z.literal('chacha20-poly1305'),
   z.literal('auto'),
 ])
@@ -56,7 +53,7 @@ export const VmessNodeConfigValidator = SimpleNodeConfigValidator.extend({
   method: VmessMethodValidator,
   uuid: z.string().uuid(),
   alterId: AlterIdValiator.optional(),
-  network: VmessNetworkValidator,
+  network: VmessNetworkValidator.default('tcp'),
   udpRelay: z.oboolean(),
 
   wsOpts: VmessWSOptsValidator.optional(),
@@ -70,6 +67,7 @@ export const VmessNodeConfigValidator = SimpleNodeConfigValidator.extend({
   skipCertVerify: z.oboolean(),
   serverCertFingerprintSha256: z.ostring(),
   alpn: z.array(z.string()).nonempty().optional(),
+  clientFingerprint: z.ostring(),
 
   /**
    * @deprecated
