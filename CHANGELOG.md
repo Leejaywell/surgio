@@ -1,3 +1,21 @@
+## [3.6.5](https://github.com/geekdada/surgio/compare/v3.6.4...v3.6.5) (2024-03-18)
+
+
+### Features
+
+* allow setting ECN and blockQuic in provider config ([77f7ac9](https://github.com/geekdada/surgio/commit/77f7ac97d82c568930b343202d015fa885848f07))
+
+
+
+## [3.6.4](https://github.com/geekdada/surgio/compare/v3.6.3...v3.6.4) (2024-03-18)
+
+
+### Bug Fixes
+
+* vless isn't available in custom provider ([06d3efd](https://github.com/geekdada/surgio/commit/06d3efdce91f596d0b4f2198ea78cf1e54b88c74))
+
+
+
 ## [3.6.3](https://github.com/geekdada/surgio/compare/v3.6.2...v3.6.3) (2024-03-17)
 
 
